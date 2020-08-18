@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<block>
+  <name>rx_switch_simphy</name>
+  <key>dmdl_rx_switch_simphy</key>
+  <category>[dmdl.simphy]</category>
+  <import>import dmdl</import>
+  <make>dmdl.rx_switch_simphy($develop_mode, $block_id, $num_fetch_per_cs)</make>
+  <!-- Make one 'param' node for every Parameter you want settable from the GUI.
+       Sub-nodes:
+       * name
+       * key (makes the value accessible as $keyname, e.g. in the make node)
+       * type -->
+  <param>
+    <name>Develop mode</name>
+    <key>develop_mode</key>
+    <value>develop_mode</value>
+    <type>enum</type>
+    <hide>$develop_mode.hide</hide>
+    <option>
+      <name>off</name>
+      <key>0</key>
+      <opt>hide:part</opt>
+      <opt>hide_control:all</opt>
+    </option>
+    <option>
+      <name>on</name>
+      <key>1</key>
+      <opt>hide:none</opt>
+      <opt>hide_control:none</opt>
+    </option>
+    <option>
+      <name>time</name>
+      <key>2</key>
+      <opt>hide:none</opt>
+      <opt>hide_control:none</opt>
+    </option>
+  </param>
+
+  <param>
+    <name>Block id</name>
+    <key>block_id</key>
+    <value>6</value>
+    <type>int</type>
+    <hide>$develop_mode.hide_control</hide>
+  </param>
+
+  <param>
+    <name>N. fetch per CS</name>
+    <key>num_fetch_per_cs</key>
+    <value>1</value>
+    <type>int</type>
+    <hide>part</hide>
+  </param>
+
+  <!-- Make one 'sink' node per input. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <sink>
+    <name>rx_signal_in</name>
+    <type>complex</type>
+  </sink>
+
+  <sink>
+    <name>RXI</name>
+    <type>message</type>
+  </sink>
+  <!-- Make one 'source' node per output. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <source>
+    <name>rx_singal_out</name>
+    <type>complex</type>
+  </source>
+  <source>
+    <name>R</name>
+    <type>message</type>
+  </source>
+  <source>
+    <name>RXO</name>
+    <type>message</type>
+  </source>
+</block>
